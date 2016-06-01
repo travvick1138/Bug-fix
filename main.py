@@ -202,10 +202,6 @@ def main():
         current_room = player.handle_action(current_room, 'f')
         current_state(current_room, player)
 
-    if player.name == "admin":
-        # do stuff
-        pass
-
     # print(repr(player))
 
     # game loop
