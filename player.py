@@ -43,7 +43,10 @@ class Player(Animal):
     """
 
     def __init__(self, name, emoji):
-        description = name + ', Slayer of Pigeons! ' + emoji
+        if name == "admin":
+            description = name + ', Slayer of Slayers of Pigeons' + emoji
+        else:
+            description = name + ', Slayer of Pigeons! ' + emoji
         i_am_a = 'player'
         super().__init__(i_am_a, description, emoji)
         self.name = name

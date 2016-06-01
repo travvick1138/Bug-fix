@@ -7,6 +7,7 @@ from key import Key
 from dagger import Dagger
 from spider import Spider
 from treasure import Treasure
+player = None
 
 """
 State:
@@ -135,6 +136,8 @@ def player_setup():
     name = input()
     if not name:
         name = 'Zelda'
+    elif name == 'admin':
+        print("Welcome supreme leader, we have gifts for you.")
     print('Strange name, that. But, as you wish, {name}.'.format(name=name))
     print('')
     print('What is your symbol? [Defaults to 👸 ]')
@@ -144,6 +147,9 @@ def player_setup():
     print('Fascinating. Kids today...')
     print('')
     player = Player(name, emoji)
+    if player.name == 'admin':
+        super_dagger_of_awesomeness = Dagger("I am a super dagger... wait for it ... of awesomeness.")
+        player.possessions = [super_dagger_of_awesomeness]
     print('I dub thee, {description}'.format(description=player.description))
     print('Onwards!')
     print('')
@@ -180,10 +186,25 @@ def main():
     game_state = 'underway'  # ('underway', 'victory', 'defeat')
 
     welcome_message()
+
     current_room = rooms_setup()
+
     player = player_setup()
+
     player.handle_action(current_room, 'h')
     player.handle_action(current_room, 'st')
+
+    if player.name == "admin":
+        current_room = player.handle_action(current_room, 'n')
+        current_state(current_room, player)
+        current_room = player.handle_action(current_room, 'o')
+        current_state(current_room, player)
+        current_room = player.handle_action(current_room, 'f')
+        current_state(current_room, player)
+
+    if player.name == "admin":
+        # do stuff
+        pass
 
     # print(repr(player))
 
