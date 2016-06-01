@@ -253,12 +253,12 @@ class Player(Animal):
             # let the player act
             if self.has_thing('dagger'):
                 if current_room.contents.health == 'alive':
-                    """Kill the spider!"""
-                    current_room.contents.kill()
+                    """Wound the spider!"""
+                    current_room.contents.wound()
                     current_room.contents.update_description()
                 elif current_room.contents.health == 'wounded':
-                    """Wound the spider"""
-                    current_room.contents.wound()
+                    """Kill the spider"""
+                    current_room.contents.kill()
                     current_room.contents.update_description()
                 else:
                     print('OK, OK, it’s dead already!')
