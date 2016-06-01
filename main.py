@@ -173,7 +173,11 @@ def end_game(player, game_state='underway'):
     if game_state == 'underway':  # player chose to exit the game
         print('Your loss! (Get it? Your loss because, by quitting the game early, you lost....)')
     elif game_state == 'victory':
-        print('Congratulations! You won! You are now {name}, Slayer of Spiders! {emoji}'.format(name=player.name,
+        if player.name == 'admin':
+            print('Congratulations! You won! You are now {name}, Slayer of the Slayers of Spiders! {emoji}'.format(name=player.name,
+                                                                                                    emoji=player.emoji))
+        else:
+            print('Congratulations! You won! You are now {name}, Slayer of Spiders! {emoji}'.format(name=player.name,
                                                                                                 emoji=player.emoji))
     else:
         print('On noes! You died! So sorry for your luck.')
