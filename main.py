@@ -198,6 +198,10 @@ def main():
             # continue
             print('What are you going to do?')
             action = input()
+            if action == 'h':  #pausing game for action list
+                player.help()
+                print('What are you going to do?')
+                action = input()
             if action == 'q':  # quit the game by breaking out of the game loop
                 break
             current_room = player.handle_action(current_room, action)
