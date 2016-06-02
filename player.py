@@ -50,9 +50,10 @@ class Player(Animal):
         i_am_a = 'player'
         super().__init__(i_am_a, description, emoji)
         self.name = name
-        self.visibility = 'visible'
+        self.visibility = True
         self.direction = 'north'
         self.possessions = []
+        self.wearing_ring = False
 
     def __repr__(self):
         return """Player(description={self.description}, i_am_a={self.i_am_a}, name={self.name},
@@ -78,6 +79,8 @@ class Player(Animal):
             self.turn(current_room, 'west')
         elif action == 'pu':
             self.pick_up(current_room)
+        elif action == 'po':
+            self.put_on()
         elif action == 'u':
             self.unlock(current_room)
         elif action == 'o':
@@ -108,6 +111,7 @@ class Player(Animal):
         print('e - Turn to face East')
         print('w - Turn to face West')
         print('pu - Pick up whatever is in the room')
+        print('po - Put on object')
         print('u - Unlock a door (requires a key)')
         print('o - Open the door in front of you (requires a door!)')
         print('a - Attack (requires something to attack)')
@@ -245,6 +249,20 @@ class Player(Animal):
 
         time.sleep(1)  # add a little drama...
         return current_room
+
+    def put_on(self):
+        """Put on a wearable object in your inventory"""
+
+        has_ring = self.has_thing('ring')
+
+        if has_ring and not self.wearing_ring:
+            self.wearing_ring = True
+            self.visibility = False
+            print("Thy eyes wend blurry f'r a moment and thou art wearing the ringeth")
+        elif has_ring and self.wearing_ring:
+            print("Thee switch'd ringeth hands")
+        else:
+            print("They stole the precious from us. Sneaky little hobbitses. Wicked, tricksy, false!")
 
     def attack(self, current_room):
         """Attack the spider (requires dagger)"""
