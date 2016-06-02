@@ -8,7 +8,6 @@ from dagger import Dagger
 from spider import Spider
 from treasure import Treasure
 from ring import Ring
-player = None
 
 """
 State:
@@ -177,6 +176,9 @@ def end_game(player, game_state='underway'):
     elif game_state == 'victory':
         if player.name == 'admin':
             print('Congratulations! You won! You are now {name}, Slayer of the Slayers of Spiders! {emoji}'.format(name=player.name,
+                                                                                                    emoji=player.emoji))
+        elif player.visibility is False:
+            print('Congratulations! You won! You are now {name}, Rogue of Spiders! {emoji}'.format(name=player.name,
                                                                                                     emoji=player.emoji))
         else:
             print('Congratulations! You won! You are now {name}, Slayer of Spiders! {emoji}'.format(name=player.name,
