@@ -7,6 +7,7 @@ from key import Key
 from dagger import Dagger
 from spider import Spider
 from treasure import Treasure
+from ring import Ring
 player = None
 
 """
@@ -79,6 +80,7 @@ def rooms_setup():
     dagger = Dagger(description='a dagger, made of steel')
     spider = Spider(description='an extremely large, very hairy, very angry spider')
     treasure = Treasure(description='a large chest filled with treasure beyond your wildest imagination')
+    ring = Ring(description='An awesome invincibility ring')
 
     # print(repr(key))
     # print(repr(dagger))
@@ -96,7 +98,7 @@ def rooms_setup():
     room_22 = Room(contents=spider, door_north='locked', door_south='open', door_east=None, door_west='closed',
                    description='You are in a large room with high ceilings.\nThere are doors to the North, West, and South.',
                    adjacent_north=None, adjacent_south=None, adjacent_east=None, adjacent_west=None)
-    room_31 = Room(contents=None, door_north=None, door_south=None, door_east='open', door_west=None,
+    room_31 = Room(contents=ring, door_north=None, door_south=None, door_east='open', door_west=None,
                    description='You are in an ornate bedroom.\nThe only door is the one in through which you came.',
                    adjacent_north=None, adjacent_south=None, adjacent_east=None, adjacent_west=None)
     room_32 = Room(contents=None, door_north='closed', door_south=None, door_east='closed', door_west='closed',
